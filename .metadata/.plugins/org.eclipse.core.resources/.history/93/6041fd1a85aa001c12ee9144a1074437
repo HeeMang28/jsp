@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%!
+	// int randomNumber() 메서드를 선언해주세요.
+	// 정수 1~10까지의 난수를 발생시켜 리턴해줍니다.
+	int randomNumber = Math.random(1);
+%>
+
+</body>
+</html>
