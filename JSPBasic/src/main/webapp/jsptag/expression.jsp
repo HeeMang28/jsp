@@ -22,6 +22,14 @@
 %>
 이름 : <%= name %><br/>
 나이 : <%= age%><br/>
-반지름이 5인 원의 넓이 : <%= areaCircle(5) %> 제곱 센티미터
+반지름이 5인 원의 넓이 : <%= areaCircle(5) %> 제곱 센티미터<br/>
+
+<% 
+	String chokobi = "쵸코비";
+	int price = 1700;
+%>
+과자 : <%= chokobi %><br/>
+가격 : <%= price %> <br/>
+
 </body>
 </html>

@@ -1,0 +1,22 @@
+<%@page import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%!
+		List<String> party = new ArrayList<>();
+%>
+<%
+	String[] jobs = {"전사", "도적", "사냥꾼", "마법사", "사제"};
+	int r = (int)(Math.random() * jobs.length);
+	String job = jobs[r];
+%>	
+	<h1>당신의 역할</h1>
+	당신에게 부여된 역할은 <b>[<%= job %>] <b/>  입니다.
+</body>
+</html>
