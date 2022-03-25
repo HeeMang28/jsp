@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%-- 
+	* 폼에서 보내는 데이터 받기
+	1. 목적지를 req_bmi.jsp로 해주세요(서버 실행후 브라우저창 주소 복붙하면 됨)
+	2. 스크립트릿을 이용해 req_bmi_form.jsp에서 보내는 데이터를 받아 자바 데이터로 저장해주세요. 
+	3. 받아온 값을 출력해주세요.
+	--%>
+<%
+	request.setCharacterEncoding("utf-8");
+	String kg = request.getParameter("kg");
+	String cm = request.getParameter("cm");
+%>
+	kg : <%= kg %> <br/>
+	cm : <%= cm %> <br/>
+</body>
+</html>
