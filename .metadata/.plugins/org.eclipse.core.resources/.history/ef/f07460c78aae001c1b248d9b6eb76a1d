@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	// 클라이언트에 저장된 쿠키를 전체 가져오는 방법
+	Cookie[] cookies = request.getCookies(); // 여러개가 들어있을 경우에 대비해 배열로 받음.
+	
+	String str = null;
+	
+	boolean flag = false;
+	
+	for(int i = 0; i < cookies.length; i++){
+		str = cookies[i].getName(); //쿠키 이름을 얻어오는 메서드
+		System.out.println(str);
+		// 쿠키 값을 얻어와서 콘솔에 찍어보세요.
+		str = cookies[i].getValue();
+		System.out.println(str);
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
