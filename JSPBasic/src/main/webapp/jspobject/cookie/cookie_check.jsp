@@ -28,6 +28,7 @@
 	if(!flag){
 		out.println("땅콩쿠키가 없어졌습니다.<br/>");
 	}
+	
 %>
 <!DOCTYPE html>
 <html>
