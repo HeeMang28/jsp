@@ -33,6 +33,8 @@ public class JDBCSelectQ1 {
 				System.out.println(rs.getString(3));
 				System.out.println(rs.getString(4));
 				System.out.println("---------------");
+			} else {
+				System.out.println(userId + "는 DB에 없는 데이터입니다.");
 			}
 			/* public static void main(String[] args) {
 				Scanner scan = new Scanner(System.in);
