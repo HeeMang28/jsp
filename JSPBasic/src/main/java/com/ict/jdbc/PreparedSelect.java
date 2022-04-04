@@ -17,9 +17,9 @@ public class PreparedSelect {
 		String connectId = "root";
 		String connectPw = "mysql";
 		
-		// 삭제할 아이디 입력받기
+		// 조회할 아이디 입력받기
 		Scanner scan = new Scanner(System.in);
-		System.out.println("삭제할 아이디를 입력해주세요.");
+		System.out.println("조회 할 아이디를 입력해주세요.");
 		String id = scan.nextLine();
 		
 		try {
@@ -51,7 +51,7 @@ public class PreparedSelect {
 				System.out.println(rs.getString(4));
 				System.out.println("---------------");
 			} else {
-				System.out.println(id + "는 DB가 없는 아이디입니다. ");
+				System.out.println(id + "는 DB에 없는 아이디입니다. ");
 			}
 		} catch(Exception e) {
 			
