@@ -9,8 +9,7 @@
 <body>
 	<form action="http://localhost:8181/JSPBasic/user/getUserInfo.jsp" method="post">
 	user_id : <input type="text" name="userId" /><br/>
-	user_pw : <input type="password" name="userPw"/><br/>
-	<input type="submit" placeholder="로그인"/>
+	<input type="submit" value="로그인"/>
 	</form>
 </body>
 </html>

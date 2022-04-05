@@ -18,7 +18,7 @@ public class PreparedUpdate {
 		
 		
 		Scanner scan = new Scanner(System.in);
-		System.out.println("수정할 아이디를 입력해주세요.");
+		System.out.println("수정할 아이디를 입력해d세요.");
 		String id = scan.nextLine();
 		System.out.println("새로운 비번을 입력해주세요.");
 		String pw = scan.nextLine();

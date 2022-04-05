@@ -6,7 +6,7 @@
     pageEncoding="UTF-8"%>
 <%
 	// 1. userId 라는 이름으로 전달되는 데이터를 받으면(request.getParameter)
-	String userId = request.getParameter("userId");
+	String userId = request.getParameter("userId"); // request 뒤에있는 userId는 http 변수이다
 	// 2. DB연동 후
 		String dbType = "com.mysql.cj.jdbc.Driver";
 		String connectUrl = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC";
@@ -38,11 +38,12 @@
 	
 		<% 	if(rs.next()) {  // 4. body 내부에 XX 유저의 정보입니다 라는 문장과 함께 전체 정보가 나오도록 코드를 짜주세요.%>
 		<%= userId %> 유저의 정보입니다.<br/>
-		<%= rs.getString(1) %><br/> 
+		<h1><%= rs.getString(1) %><br/> </h1>
 		<%= rs.getString(2) %><br/> 
 		<%= rs.getString(3) %><br/> 
 		<%= rs.getString(4) %><br/> 
 	<%} else { %>
-	<% out.println("없는 아이디 입니다.");} %>
+	<h3><%= userId %> 계정은 존재하지 않습니다.</h3> 
+<% } %>
 </body>
 </html>
