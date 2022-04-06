@@ -14,11 +14,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="http://localhost:8181/JSPBasic/user/userLoginCheck.jsp" method="post">
+	<form action="userLoginCheck.jsp" method="post">
 		ID : <input type="text" name="Id"><br/>
 		비밀번호 : <input type="password" name="Pw"><br/>
 		<input type="submit" value="로그인">
-		<a href="userJoinForm.jsp"> 회원가입 </a>
 	</form>
+	<a href="userJoinForm.jsp"> 회원가입 </a>
 </body>
 </html>

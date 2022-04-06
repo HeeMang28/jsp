@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
+	<form action="userJoinCheck.jsp" method="post">
 	ID : <input type="text" name="id"><br/>
 	비밀번호 : <input type="password" name="pw"><br/>
 	이름 : <input type="text" name="name"><br/>

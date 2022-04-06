@@ -16,5 +16,7 @@
 <body>
 	<h1><%= userId %>님 로그인을 환영합니다!</h1>
 	<a href="userLogout.jsp">로그아웃하기</a>
+	<a href="userDelete.jsp">회원탈퇴</a>
+	<a href="userUpdateForm.jsp">정보수정</a>
 </body>
 </html>

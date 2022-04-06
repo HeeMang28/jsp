@@ -1,3 +1,4 @@
+<%@page import="com.ict.domain.UserVO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -19,6 +20,8 @@
 	String connectPw = "mysql";
 	
 	ResultSet rs = null;
+	
+	UserVO user = new UserVO();
 	try {
 		
 		Class.forName(dbType);
@@ -28,24 +31,32 @@
 		PreparedStatement pstmt = con.prepareStatement(sel);
 		pstmt.setString(1, userId);
 		rs = pstmt.executeQuery();
+		if(rs.next()){
+		// 생성된 UserVO에 Setter를 이용해 변수명에 맞는 자료 입력
+		user.setUserId(rs.getString(1));
+		user.setUserPw(rs.getString(2));
+		user.setUserName(rs.getString(3));
+		user.setEmail(rs.getString(4));
+		} else {
+			response.sendRedirect("userIdFail.jsp");
+		}
+		rs.close(); // ResultSet, Connection, PrepareStatement는 .close()로 닫을수있음.
 	} catch(Exception e){
 		e.printStackTrace();
 	}
 	// DB에 들어있던 id와 userId를 비교하고, DB에 들어있던 pw와 formPw를 비교해서
 	// 적절한 처리를 해주세요.
-	if(rs.next()){
 		// dbId = rs.getString(1);
-		dbPw = rs.getString(2);
-		if(userPw.equals(dbPw)){
-			session.setAttribute("s_id", userId);
-			response.sendRedirect("http://localhost:8181/JSPBasic/user/loginWelcome.jsp");
-		} else {
-			response.sendRedirect("http://localhost:8181/JSPBasic/user/userPwFail.jsp");
-		}
-	} else {
+		//dbPw = rs.getString(2);
+		//if(userPw.equals(dbPw)){
+		//	session.setAttribute("s_id", userId);
+		//	response.sendRedirect("http://localhost:8181/JSPBasic/user/loginWelcome.jsp");
+		//}
+		//}
+	//} else {
 		// rs.next() 가 false라는것은 DB에 해당 아이디가 존재하지 않는것이므로 아이디 없음 페이지
-		response.sendRedirect("http://localhost:8181/JSPBasic/user/userIdFail.jsp");
-	}
+	//	response.sendRedirect("http://localhost:8181/JSPBasic/user/userIdFail.jsp");
+	//}
 	// >if(rs.next()){
 	//	out.println("아이디 : " + rs.getString(1) + "<br/>");
 	//	out.println("비밀번호 : " + rs.getString(2) + "<br/>");

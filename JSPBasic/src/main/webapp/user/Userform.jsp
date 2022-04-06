@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="http://localhost:8181/JSPBasic/user/getUserInfo.jsp" method="post">
-	user_id : <input type="text" name="userId" /><br/>
-	<input type="submit" value="로그인"/>
+	<form action="getUserInfo.jsp" method="post">
+	ID : <input type="text" name="userId" /><br/>
+	<input type="submit" value="조회"/>
 	</form>
 </body>
 </html>
