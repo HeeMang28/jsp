@@ -22,6 +22,9 @@
 	ResultSet rs = null;
 	
 	UserVO user = new UserVO();
+	
+	// redirect시 이동할 URL을 저장할 수 있는 변수 생성
+	String reUrl = null;
 	try {
 		
 		Class.forName(dbType);
@@ -37,8 +40,11 @@
 		user.setUserPw(rs.getString(2));
 		user.setUserName(rs.getString(3));
 		user.setEmail(rs.getString(4));
+		System.out.println("UserVO 내부 자료 조회");
+		System.out.println(user);
+		System.out.println("---------------");
 		} else {
-			response.sendRedirect("userIdFail.jsp");
+			reUrl = "userIdFail.jsp";
 		}
 		rs.close(); // ResultSet, Connection, PrepareStatement는 .close()로 닫을수있음.
 	} catch(Exception e){
@@ -47,16 +53,15 @@
 	// DB에 들어있던 id와 userId를 비교하고, DB에 들어있던 pw와 formPw를 비교해서
 	// 적절한 처리를 해주세요.
 		// dbId = rs.getString(1);
-		//dbPw = rs.getString(2);
-		//if(userPw.equals(dbPw)){
-		//	session.setAttribute("s_id", userId);
-		//	response.sendRedirect("http://localhost:8181/JSPBasic/user/loginWelcome.jsp");
-		//}
-		//}
-	//} else {
+		dbPw = user.getUserPw();
+		if(reUrl == null && userPw.equals(dbPw)){
+			session.setAttribute("s_id", userId);
+			reUrl = "loginWelcome.jsp";
+	} else if(reUrl == null && !userPw.equals(dbPw)) {
 		// rs.next() 가 false라는것은 DB에 해당 아이디가 존재하지 않는것이므로 아이디 없음 페이지
-	//	response.sendRedirect("http://localhost:8181/JSPBasic/user/userIdFail.jsp");
-	//}
+		reUrl = "userPwFail.jsp";
+	}
+		response.sendRedirect(reUrl);
 	// >if(rs.next()){
 	//	out.println("아이디 : " + rs.getString(1) + "<br/>");
 	//	out.println("비밀번호 : " + rs.getString(2) + "<br/>");

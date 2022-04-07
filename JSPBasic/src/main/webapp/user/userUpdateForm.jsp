@@ -22,7 +22,6 @@
 	// 해당 유저의 이름과 이메일을 사전에 미리 입력된 상태로 만들 수 있음.
 	// SELECT * FROM userinfo WEHERE user_id=? 를 이용해서
 	// 로그인한 유저의 정보를 받아주세요.
-	String dbEmail = null;
 	
 	String dbType = "com.mysql.cj.jdbc.Driver";
 	String connectUrl = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC";
@@ -42,9 +41,7 @@
 	} catch(Exception e){
 		e.printStackTrace();
 	}
-	if(rs.next()){
-		dbEmail = rs.getString(4);
-	}
+	rs.next();
 	
 %>
 <!DOCTYPE html>
@@ -62,8 +59,8 @@
 	<form action="userUpdateCheck.jsp" method="post">
 		<input type="hidden" name="fId" value="<%=userId %>" ><br/>
 		비밀번호 : <input type="password" name="fPw"/> <br/>
-		이름 : <input type="text" name="fName" value="<%= rs.getString(3) %>" /> <br/>
-		이메일 : <input type="text" name="fEmail" value="<%= dbEmail %>"/> <br/> <!--  value를 사용하면 디폴트값으로 저장해줍니다. -->
+		이름 : <input type="text" name="fName" value="<%= rs.getString(3) %>" readonly /> <br/>
+		이메일 : <input type="text" name="fEmail" value="<%= rs.getString(4) %>"/> <br/> <!--  value를 사용하면 디폴트값으로 저장해줍니다. -->
 		<input type="submit" value="수정하기">
 	</form>
 </body>
