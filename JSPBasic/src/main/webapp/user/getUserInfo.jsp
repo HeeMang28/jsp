@@ -1,3 +1,5 @@
+<%@page import="com.ict.domain.UserVO"%>
+<%@page import="com.ict.domain.UserDAO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -5,6 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+/*
 	// 1. userId 라는 이름으로 전달되는 데이터를 받으면(request.getParameter)
 	String userId = request.getParameter("userId"); // request 뒤에있는 userId는 http 변수이다
 	// 2. DB연동 후
@@ -26,7 +29,14 @@
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-	
+*/	
+	// 1. userId 라는 이름으로 전달되는 데이터를 받으면 (request.get?????)
+	String userId = request.getParameter("userId");
+	// - DAO 생성(MySQL을 쓴다고 지정)
+	UserDAO dao = new UserDAO();
+	// - DAO 내부 메서드인 .getUserInfo(유저명) 호출
+	UserVO user = dao.getUserInfo(userId);
+	//out.println(user);
 %>
 <!DOCTYPE html>
 <html>
@@ -35,15 +45,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-		<% 	if(rs.next()) {  // 4. body 내부에 XX 유저의 정보입니다 라는 문장과 함께 전체 정보가 나오도록 코드를 짜주세요.%>
-		<%= userId %> 유저의 정보입니다.<br/>
-		<h1><%= rs.getString(1) %><br/> </h1>
-		<%= rs.getString(2) %><br/> 
-		<%= rs.getString(3) %><br/> 
-		<%= rs.getString(4) %><br/> 
-	<%} else { %>
-	<h3><%= userId %> 계정은 존재하지 않습니다.</h3> 
-<% } %>
+	<!--   유저 정보를 여기에 작성해주세요. -->
+	아이디 : <%= user.getUserId() %><br/>
+	비밀번호 : <%= user.getUserPw() %><br/>
+	이름 : <%= user.getUserName() %><br/>
+	이메일 : <%= user.getEmail() %><br/>
+
 </body>
 </html>

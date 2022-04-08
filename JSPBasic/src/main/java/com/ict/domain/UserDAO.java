@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.protocol.Resultset;
+
 // DAO 클래스 DB연동시 반복적으로 작성하는 코드를 중복 작성하지 않기 위해 작성합니다.
 public class UserDAO {
 	// DB접속시 필요한 변수들을 아래에 선언합니다.
@@ -28,7 +30,7 @@ public class UserDAO {
 	// getAllUserList.jsp의 핵심 로직을 DAO로 옮겨서 작성해보겠습니다.
 	// getAllUserList는 전체 유저 목록을 필요로 하기 때문에
 	// userinfo테이블의 row 여러개를 받아올 수 있어야 합니다.
-	public List<UserVO> getAllUserList() {
+	public List<UserVO> getAllUserList() { // List를 붙이는이유 UserVO가 1줄의 row를 담아줄수잇는데 UserVO의 row가 여러개일수잇기때문에 list를 붙여준다.
 		// .jsp에서 로드할때는 페이지가 옮겨가면 어차피 다 삭제되었기 때문에 .close()를
 		// 해 줘도 안 해줘도 큰 상관이 없었습니다.
 		// 그러나 DAO에서는 회수를 안 해주면 힙에 데이터가 계속 쌓여 시스템에 부하가 생깁니다.
@@ -66,6 +68,7 @@ public class UserDAO {
 				// userList에 쌓기
 				userList.add(user);
 			}
+			System.out.println("리스트에 쌓인 자료 체크 : " + userList);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -78,6 +81,44 @@ public class UserDAO {
 			}
 		}
 		return userList;
+	} // getAllUserList() 끝나는 지점.
+	
+	// 쿼리문 내에 ? 가 있다면
+	// ? 개수만큼 사용자가 입력해야 하게 합니다.
+	// 그래서 메서드에 요청 파라미터로
+	// ?개수만큼 선언해줍니다.
+	public UserVO getUserInfo(String userId) {
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		UserVO user = new UserVO();
+		try {
+		
+			con = DriverManager.getConnection(connectUrl, connectId, connectPw);
+			String sel = "SELECT * FROM userinfo WHERE user_id = ?";
+			pstmt = con.prepareStatement(sel);
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			// rs내부 데이터를 user변수에 옮겨넣어주세요 (setter 사용)
+			if(rs.next()) {
+				user.setUserId(rs.getString(1));
+				user.setUserPw(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setEmail(rs.getString(4));
+			}
+	} catch(Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			con.close();
+			rs.close();
+			pstmt.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	} 
+		return user;
 	}
+//getUserInfo() 끝나는 지점
 
-}
+} // UserVO가 끝나는 지점
