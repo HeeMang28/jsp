@@ -1,3 +1,4 @@
+<%@page import="com.ict.domain.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -11,27 +12,8 @@
 	String userName = request.getParameter("fName");
 	String userEmail = request.getParameter("fEmail");
 	
-	String dbType = "com.mysql.cj.jdbc.Driver";
-	String connectUrl = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC";
-	String connectId = "root";
-	String connectPw = "mysql";
-	
-	ResultSet rs = null;
-	try {
-		
-		Class.forName(dbType);
-
-		Connection con = DriverManager.getConnection(connectUrl, connectId, connectPw);
-		String up = "UPDATE userinfo SET user_pw= ? , user_name=?, email=? WHERE user_id = ?";
-		PreparedStatement pstmt = con.prepareStatement(up);
-		pstmt.setString(1, userPw);
-		pstmt.setString(2, userName);
-		pstmt.setString(3, userEmail);
-		pstmt.setString(4, userId);
-		pstmt.executeUpdate();
-	} catch(Exception e){
-		e.printStackTrace();
-	}
+	UserDAO dao = new UserDAO();
+	dao.userUpdateCheck(userId, userPw, userName, userEmail);
 	response.sendRedirect("loginWelcome.jsp");
 %>
 <!DOCTYPE html>

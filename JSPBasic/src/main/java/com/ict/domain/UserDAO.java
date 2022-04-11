@@ -121,4 +121,52 @@ public class UserDAO {
 	}
 //getUserInfo() 끝나는 지점
 
-} // UserVO가 끝나는 지점
+	public void userJoinCheck(String joinId, String joinPw, String joinName, String joinEmail) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			
+			con = DriverManager.getConnection(connectUrl, connectId, connectPw);
+			String join = "INSERT INTO userinfo VALUES (user_id = ?, user_pw = ?, user_name, email = ?)";
+			pstmt = con.prepareStatement(join);
+			pstmt.setString(1, joinId);
+			pstmt.setString(2, joinPw);
+			pstmt.setString(3, joinName);
+			pstmt.setString(4, joinEmail);
+			pstmt.executeUpdate();
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			con.close();
+			pstmt.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		}
+	}
+	public void userUpdateCheck(String userId, String userPw, String userName, String userEmail) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			
+			con = DriverManager.getConnection(connectUrl, connectId, connectPw);
+			String up = "UPDATE userinfo SET user_pw= ? , user_name=?, email=? WHERE user_id = ?";
+			pstmt  = con.prepareStatement(up);
+			pstmt.setString(1, userPw);
+			pstmt.setString(2, userName);
+			pstmt.setString(3, userEmail);
+			pstmt.setString(4, userId);
+			pstmt.executeUpdate();
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			}
+		}
+	}  // UserVO가 끝나는 지점

@@ -50,6 +50,5 @@
 	비밀번호 : <%= user.getUserPw() %><br/>
 	이름 : <%= user.getUserName() %><br/>
 	이메일 : <%= user.getEmail() %><br/>
-
 </body>
 </html>
