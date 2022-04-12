@@ -19,7 +19,7 @@
 		response.sendRedirect("userLoginForm.jsp");
 	}
 	
-	UserDAO dao = new UserDAO();
+	UserDAO dao = UserDAO.getInstance();
 	UserVO user = dao.getUserInfo(userId);
 	
 %>

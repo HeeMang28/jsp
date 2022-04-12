@@ -12,7 +12,7 @@
 	String userName = request.getParameter("fName");
 	String userEmail = request.getParameter("fEmail");
 	
-	UserDAO dao = new UserDAO();
+	UserDAO dao = UserDAO.getInstance();
 	dao.userUpdateCheck(userId, userPw, userName, userEmail);
 	response.sendRedirect("loginWelcome.jsp");
 %>

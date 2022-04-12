@@ -1,3 +1,4 @@
+<%@page import="com.ict.domain.UserDAO"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -11,26 +12,15 @@
 	String joinName = request.getParameter("name");
 	String joinEmail = request.getParameter("email");
 	
-	String dbType = "com.mysql.cj.jdbc.Driver";
-	String connectUrl = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC";
-	String connectId = "root";
-	String connectPw = "mysql";
+	// 회원가입을 처리하는 로직을 작성해주세요.
+	// 쿼리문은 INSERT userinfo VALUES;
+	//				(아이디, 비번, 이름, 이메일);
+	// DB와 연동해서 formId에 해당하는 유저 전체 정보를 받아줍니다. (getUserInfo.jsp로직을 참조)
 	
-	ResultSet rs = null;
-try {
-		
-		Class.forName(dbType);
-		Connection con = DriverManager.getConnection(connectUrl, connectId, connectPw);
-		String sel = "INSERT INTO userinfo VALUES (?, ?, ?, ?);";
-		PreparedStatement pstmt = con.prepareStatement(sel);
-		pstmt.setString(1, joinId);
-		pstmt.setString(2, joinPw);
-		pstmt.setString(3, joinName);
-		pstmt.setString(4, joinEmail);
-		pstmt.executeUpdate();
-	} catch(Exception e){
-		e.printStackTrace();
-	}
+	// 1. DAO 생성
+	UserDAO dao = UserDAO.getInstance();
+	// 2. userJoinCheck 메서드 호출 후 진입점(userJoinCheck.jsp)
+	dao.userJoinCheck(joinId, joinPw, joinName, joinEmail);
 	response.sendRedirect("userLoginForm.jsp");
 %>
 <!DOCTYPE html>

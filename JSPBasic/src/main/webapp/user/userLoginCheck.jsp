@@ -15,14 +15,14 @@
 	String dbId = null;
 	String dbPw = null;
 	// DAO를 이용한 로그인 로직으로 수정해주세요.
-	UserDAO dao = new UserDAO();
+	UserDAO dao = UserDAO.getInstance();
 	UserVO user = dao.getUserInfo(userId);
 	dbId = user.getUserId(); // 해당아이디가 DB에 없을경우 null이 저장됨
 	dbPw = user.getUserPw();
 	if(dbId != null){
 		if(userPw.equals(dbPw)){
 			session.setAttribute("s_id", dbId);
-			response.sendRedirect("loginWelcom.jsp");
+			response.sendRedirect("loginWelcome.jsp");
 		} else {
 			response.sendRedirect("userPwFail");
 	} 	

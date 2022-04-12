@@ -33,7 +33,7 @@
 	// 1. userId 라는 이름으로 전달되는 데이터를 받으면 (request.get?????)
 	String userId = request.getParameter("userId");
 	// - DAO 생성(MySQL을 쓴다고 지정)
-	UserDAO dao = new UserDAO();
+	UserDAO dao = UserDAO.getInstance();
 	// - DAO 내부 메서드인 .getUserInfo(유저명) 호출
 	UserVO user = dao.getUserInfo(userId);
 	//out.println(user);

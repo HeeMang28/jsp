@@ -4,7 +4,7 @@
 	String userId = (String)session.getAttribute("s_id");
 
 	if(userId == null){
-		response.sendRedirect("userLoginForm_login_form.jsp");
+		response.sendRedirect("userLoginForm.jsp");
 	}
     %>
 <!DOCTYPE html>

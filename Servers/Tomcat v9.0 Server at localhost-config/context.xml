@@ -26,4 +26,17 @@
     <!--
     <Manager pathname="" />
     -->
+    	<!--  url, username, password는 dao내에서 DB접속에 쓰던걸 그대로 가져왔습니다. 
+    	수정 완료가 되었으면, DAO 생성자를 싱글턴 패턴으로 바꿉니다.	-->
+        <Resource
+    	auth="Container"
+    	driverClassName = "com.mysql.cj.jdbc.Driver"
+    	url = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC"
+    	username = "root"
+    	password = "mysql"
+    	name = "jdbc/mysql"
+    	type = "javax.sql.DataSource"
+    	maxActive = "300"
+    	maxWait = "1000"    
+    />
 </Context>
