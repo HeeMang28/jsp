@@ -16,7 +16,7 @@
 	 -->
 	 <c:choose>
 	 <c:when test="${param.lang eq '자바' }"> 
-	 스프링부트로 배민에서 웹개발을 합니다.
+	 <c:out value="스프링부트로 배민에서 웹개발을 합니다." />
 	 </c:when>
 	 <c:when test="${param.lang eq '파이썬' }"> 
 	 장고로 요기요에서 웹 개발을 합니다.
