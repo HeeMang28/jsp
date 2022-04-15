@@ -20,7 +20,7 @@ public class UserDAO {
 	//private String connectUrl = "jdbc:mysql://localhost:3306/jdbcprac2?serverTimezone=UTC";
 	//private String connectId = "root";
 	//private String connectPw = "mysql";
-	private DataSource ds;
+	private DataSource ds = null;
 	// 생성자를 이용해 생성할 때 자동으로 Class.forName()을 세팅하게 만들어줍니다.
 	// 어떤 쿼리문을 실행하더라도 위의 DB접속 변수의 DB종류지정은 무조건 하기에 생성자로 생성합니다.
 	//public UserDAO() {
