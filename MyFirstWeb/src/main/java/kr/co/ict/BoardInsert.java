@@ -1,7 +1,6 @@
 package kr.co.ict;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,42 +10,48 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.ict.domain.BoardDAO;
-import kr.co.ict.domain.BoardVO;
 
 /**
- * Servlet implementation class getBoardList
+ * Servlet implementation class boardInsert
  */
-@WebServlet("/boardList")
-public class getBoardList extends HttpServlet {
+@WebServlet("/boardInsert")
+public class BoardInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getBoardList() {
+    public BoardInsert() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardDAO dao = BoardDAO.getInstance();
-		List<BoardVO> boardList = dao.getBoardList();
-		// 포워딩 위치로 얻어온 데이터 보내기
-	 
-		request.setAttribute("boardList", boardList);
-		RequestDispatcher dp = request.getRequestDispatcher("/board/getBoardList.jsp");
-		dp.forward(request, response);
-		// 보통 수정이나 삭제 등을 할때는 post 방식으로 처리하고 조회 등만 할때는 get방식으로 처리한다.
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// post방식인 경우 제일먼저 한글 인코딩 설정부터
 		request.setCharacterEncoding("utf-8");
-		// 보통 수정이나 삭제 등을 할때는 post 방식으로 처리하고 조회 등만 할때는 get방식으로 처리한다.
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String writer = request.getParameter("writer");
+		System.out.println(title);
+		System.out.println(content);
+		System.out.println(writer);
+		// dao생성
+		BoardDAO dao = BoardDAO.getInstance();
+		// dao의 insert기능  호출 및 파라미터 매칭
+		dao.boardInsert(title, content, writer);
+		
+		// boardList로 리다이렉트(서블릿 주소로 리다이렉트시 파일이름 노출 안됨.)
+		response.sendRedirect("http://localhost:8181/MyFirstWeb/boardList");
+	}
 	}
 
-}

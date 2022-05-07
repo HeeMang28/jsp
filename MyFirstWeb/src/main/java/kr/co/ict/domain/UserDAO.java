@@ -189,7 +189,7 @@ public class UserDAO {
 		try {
 			
 			con = ds.getConnection();
-			String join = "INSERT INTO userinfo VALUES (user_id = ?, user_pw = ?, user_name, email = ?)";
+			String join = "INSERT INTO userinfo VALUES (user_id = ?, user_pw = ?, user_name = ?, email = ?)";
 			pstmt = con.prepareStatement(join);
 			pstmt.setString(1, joinId);
 			pstmt.setString(2, joinPw);

@@ -11,7 +11,10 @@
 	String joinPw = request.getParameter("pw");
 	String joinName = request.getParameter("name");
 	String joinEmail = request.getParameter("email");
-	
+	System.out.println(joinId);
+	System.out.println(joinPw);
+	System.out.println(joinName);
+	System.out.println(joinEmail);
 	// 회원가입을 처리하는 로직을 작성해주세요.
 	// 쿼리문은 INSERT userinfo VALUES;
 	//				(아이디, 비번, 이름, 이메일);

@@ -17,4 +17,5 @@
     <fullyQualifiedTypeName name="kr.co.ict.domain.BoardDAO"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="kr.co.ict.domain.BoardVO"/>
+    <fullyQualifiedTypeName name="kr.co.ict.domain.BoardButtonDTO"/>
 </qualifiedTypeNameHistroy>
